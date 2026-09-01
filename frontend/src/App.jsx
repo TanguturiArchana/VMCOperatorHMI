@@ -26,7 +26,7 @@ function App() {
   
   
   useEffect(() => {
-    fetch("http://localhost:5000/api/jobs")
+    fetch("https://vmcoperatorhmi-x2ky.onrender.com/api/jobs")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch jobs");
@@ -58,7 +58,7 @@ function App() {
       setSelectedJob(job);
       setMachinePoweredOn(false);
       const machineResponse = await fetch(
-        `http://localhost:5000/api/jobs/${job.id}/machine-checks`
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${job.id}/machine-checks`
       );
 
       if (!machineResponse.ok) {
@@ -69,7 +69,7 @@ function App() {
 
 
       const toolsResponse = await fetch(
-        `http://localhost:5000/api/jobs/${job.id}/tools`
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${job.id}/tools`
       );
 
       if (!toolsResponse.ok) {
@@ -81,7 +81,7 @@ function App() {
 
      
       const workpieceResponse = await fetch(
-        `http://localhost:5000/api/jobs/${job.id}/workpiece-checks`
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${job.id}/workpiece-checks`
       );
       if (!workpieceResponse.ok) {
         throw new Error("Failed to fetch workpiece checks");
@@ -91,7 +91,7 @@ function App() {
 
     
       const stateResponse = await fetch(
-        `http://localhost:5000/api/jobs/${job.id}/state`
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${job.id}/state`
       );
       if (stateResponse.ok) {
         const stateData = await stateResponse.json();
@@ -116,7 +116,7 @@ function App() {
       const newValue = check.completed === 1 ? 0 : 1;
 
       const response = await fetch(
-        `http://localhost:5000/api/jobs/${selectedJob.id}/machine-checks/${check.id}`,
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${selectedJob.id}/machine-checks/${check.id}`,
         {
           method: "PUT",
           headers: {
@@ -152,7 +152,7 @@ function App() {
       const newValue = tool.confirmed === 1 ? 0 : 1;
 
       const response = await fetch(
-        `http://localhost:5000/api/jobs/${selectedJob.id}/tools/${tool.id}`,
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${selectedJob.id}/tools/${tool.id}`,
         {
           method: "PUT",
           headers: {
@@ -187,7 +187,7 @@ function App() {
       const newValue = check.completed === 1 ? 0 : 1;
 
       const response = await fetch(
-        `http://localhost:5000/api/jobs/${selectedJob.id}/workpiece-checks/${check.id}`,
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${selectedJob.id}/workpiece-checks/${check.id}`,
         {
           method: "PUT",
           headers: {
@@ -223,7 +223,7 @@ function App() {
       setError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/jobs/${selectedJob.id}/next`,
+        `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${selectedJob.id}/next`,
         {
           method: "POST",
         }
@@ -250,7 +250,7 @@ function App() {
     setError("");
 
     const response = await fetch(
-      `http://localhost:5000/api/jobs/${selectedJob.id}/stop`,
+      `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${selectedJob.id}/stop`,
       {
         method: "POST",
       }
@@ -275,7 +275,7 @@ const handleStart = async () => {
     setError("");
 
     const response = await fetch(
-      `http://localhost:5000/api/jobs/${selectedJob.id}/start`,
+      `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${selectedJob.id}/start`,
       {
         method: "POST",
       }
@@ -301,7 +301,7 @@ const handleRestart = async () => {
     setError("");
 
     const response = await fetch(
-      `http://localhost:5000/api/jobs/${selectedJob.id}/restart`,
+      `https://vmcoperatorhmi-x2ky.onrender.com/api/jobs/${selectedJob.id}/restart`,
       {
         method: "POST",
       }
