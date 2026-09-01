@@ -472,7 +472,7 @@ app.post("/api/jobs/:jobId/restart", async (req, res) => {
     await db.query(
       `UPDATE job_state
        SET current_stage = 'MACHINE_CHECKS',
-           operation_status = 'STOPPED'
+           operation_status = 'RUNNING'
        WHERE job_id = ?`,
       [jobId]
     );
@@ -480,7 +480,7 @@ app.post("/api/jobs/:jobId/restart", async (req, res) => {
     res.json({
       message: "Job restarted successfully",
       current_stage: "MACHINE_CHECKS",
-      operation_status: "STOPPED"
+      operation_status: "RUNNING"
     });
 
   } catch (error) {
