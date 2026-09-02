@@ -239,6 +239,10 @@ function App() {
       console.log("Next stage:", data);
 
       setCurrentStage(data.current_stage);
+       if (data.operation_status) {
+          setOperationStatus(data.operation_status);
+      }
+
     } catch (error) {
       console.error(error);
       setError("Could not move to next stage");
