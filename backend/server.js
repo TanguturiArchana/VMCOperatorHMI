@@ -323,19 +323,21 @@ app.post("/api/jobs/:jobId/next", async (req, res) => {
         current_stage: "READY_REVIEW"
       });
     }
-
-    
     if (currentStage === "READY_REVIEW") {
       await db.query(
-        "UPDATE job_state SET current_stage = ? WHERE job_id = ?",
-        ["OPERATION", jobId]
-      );
+        `UPDATE job_state
+         SET current_stage = ?,
+         operation_status = ?
+         WHERE job_id = ?`,
+        ["OPERATION", "READY", jobId]
+       );
 
-      return res.json({
-        message: "Job is ready for operation",
-        current_stage: "OPERATION"
-      });
-    }
+       return res.json({
+            message: "Job is ready for operation",
+            current_stage: "OPERATION",
+            operation_status: "READY"
+        });
+     }
 
     if (currentStage === "OPERATION") {
       return res.status(400).json({
